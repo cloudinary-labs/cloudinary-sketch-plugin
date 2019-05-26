@@ -1,5 +1,6 @@
+import sketch from 'sketch';
 
-function layerToImageData(layer) {
+const layerToImageData = (layer) => {
 
 	var format = MSExportFormat.formatWithScale_name_fileFormat(1.0, 'export', 'png')
 	var request = MSExportRequest.exportRequestsFromExportableLayer_exportFormats_useIDForName(layer, [format], false)[0]
@@ -9,15 +10,6 @@ function layerToImageData(layer) {
 
 	return data
 }
-
-console.log('This is an example Sketch script.')
-
-var sketch = require('sketch')
-
-
-// Create and configure your inputs here
-// ...
-
 
 // User Interactions
 
@@ -72,5 +64,69 @@ export function createSettingsWindow(context, cloudName, apiKey, secretKey) {
     var inputs = [ cloudNameTextfield, apiKeyTextfield, secretKeyTextfield ];
     return [alert, inputs]
 };
+
+export const calculateLayerDimension = (item) => {
+    let layer = item;
+
+    if (item.type === 'DataOverride') {
+        // only available on Sketch 54+
+        const overrideFrame = item.override.getFrame && item.override.getFrame();
+
+        if (overrideFrame) {
+            layer = {
+                frame: overrideFrame
+            }
+        } 
+        else {
+            const overrideRepresentation = util.toArray(
+                    item.symbolInstance.sketchObject.overrideContainer().flattenedChildren()
+                ).find(x => x.availableOverride() === item.override.sketchObject);
+
+            if (!overrideRepresentation) {
+                layer = item.symbolInstance
+            } 
+            else {
+                const path = overrideRepresentation.pathInInstance()
+                const bounds = CGPathGetBoundingBox(path)
+                
+                layer = {
+                    frame: {
+                        width: Number(bounds.size.width),
+                        height: Number(bounds.size.height)
+                    }
+                }
+            }
+        }
+    }
+
+    return layer;
+}
+
+export const getOrientations = (items) => {
+    return items.reduce((prev, item, index) => {
+        if (!item.type) {
+        // if we get an unknown item, it means that we have a layer that is not yet
+        // recognized by the API (probably an MSOvalShape or something)
+        // force cast it to a Shape
+        item = sketch.Shape.fromNative(item.sketchObject)
+        }
+
+        const layer = calculateLayerDimension(item);
+        const dataInfo = { item, index, frame: layer.frame };
+
+        if (layer.frame.width > layer.frame.height) {
+        prev.landscape.push(dataInfo)
+        } else if (layer.frame.width < layer.frame.height) {
+        prev.portrait.push(dataInfo)
+        } else if (layer.frame.width === layer.frame.height) {
+        prev.squarish.push(dataInfo)
+        }
+        return prev;
+    }, {
+        landscape: [],
+        portrait: [],
+        squarish: []
+    });
+}
 
 export default createSettingsWindow;

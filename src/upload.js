@@ -1,16 +1,18 @@
-var cloud_name = NSUserDefaults.standardUserDefaults().objectForKey('cloudname');
-var api_key = NSUserDefaults.standardUserDefaults().objectForKey('apikey');
-var api_secret = NSUserDefaults.standardUserDefaults().objectForKey('secretkey');
+import sketch from 'sketch'
 
-var data = {
-    "upload_preset": "preset",
-    "file": "https://res.cloudinary.com/demo/w_50/sample.jpg",
-    "folder": "myfolder",
-    "public_id": "artboard_name"
-};
+const { UI, Settings } = sketch
 
-export function search(cloudName, apiKey, secretKey) {
-    if (!cloudName || !apiKey || !secretKey) return -1;
+export function upload() {
+    var cloud_name = NSUserDefaults.standardUserDefaults().objectForKey('cloudname');
+
+    var data = {
+        "upload_preset": "preset",
+        "file": "https://res.cloudinary.com/demo/w_50/sample.jpg", //
+        "folder": "myfolder", //folder input from user
+        "public_id": "artboard_name" //artboard name - auto generate
+    };
+
+    if (!cloud_name) return -1;
     fetch(`https://api.cloudinary.com/v1_1/${cloud_name}/upload`, {
     	method: 'POST',
     	headers: {
@@ -23,4 +25,4 @@ export function search(cloudName, apiKey, secretKey) {
 	  });
 }
 
-search(cloud_name,api_key,api_secret);
+export default upload;

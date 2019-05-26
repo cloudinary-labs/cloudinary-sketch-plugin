@@ -10,13 +10,14 @@
   "suppliesData" : true,
   "commands": [
     {
-      "script" : "./cloudinary.js",
+      "script" : "./dataSupplier.js",
       "handlers" : {
         "actions" : {
           "Startup" : "onStartup",
           "Shutdown": "onShutdown",
           "SupplyPhotoById" : "onGetPhotoById",
-          "SearchPhoto" : "onSearchPhoto"
+          "SearchPhoto" : "onSearchPhoto",
+          "UploadPhoto" : "onUploadPhoto"
         }
       }
     },
