@@ -43,7 +43,7 @@ export function createSettingsWindow(context, cloudName, apiKey, secretKey) {
     cloudNameTextfield.setStringValue( cloudName || '' );
   
     var apiKeyLabel = createLabel( 'API Key', 12, true, NSMakeRect( 0, 120, freeSpace, 20 ) );
-    var apiKeyTextfield = NSSecureTextField.alloc().initWithFrame( NSMakeRect( 0, 95, freeSpace, 25 ) );
+    var apiKeyTextfield = NSTextField.alloc().initWithFrame( NSMakeRect( 0, 95, freeSpace, 25 ) );
     apiKeyTextfield.setStringValue( apiKey || '' );
 
     var secretKeyLabel = createLabel( 'API Secret Key', 12, true, NSMakeRect( 0, 60, freeSpace, 20 ) );
@@ -64,6 +64,39 @@ export function createSettingsWindow(context, cloudName, apiKey, secretKey) {
     var inputs = [ cloudNameTextfield, apiKeyTextfield, secretKeyTextfield ];
     return [alert, inputs]
 };
+
+export const createUploadScreen = (context, preset, folder) => {
+    var alert = COSAlertWindow.new();
+    var width = 500;
+    var freeSpace = width - 100;
+
+    alert.setIcon( NSImage.alloc().initByReferencingFile( context.plugin.urlForResourceNamed( 'icon@2x.png' ).path() ) );
+    alert.addButtonWithTitle( 'Upload' );
+    alert.addButtonWithTitle( 'Cancel' );
+    alert.setMessageText( 'Upload selected artboard' );
+    alert.setInformativeText( 'Set upload preset & folder to upload to' );
+  
+    var mainView = NSView.alloc().initWithFrame( NSMakeRect( 0, 0, width, 150 ) );
+  
+    var presetLabel = createLabel( 'Upload preset', 12, true, NSMakeRect( 0, 120, freeSpace, 20 ) );
+    var presetTextfield = NSTextField.alloc().initWithFrame( NSMakeRect( 0, 95, freeSpace, 25 ) );
+    presetTextfield.setStringValue( preset || '' );
+
+    var folderLabel = createLabel( 'Folder', 12, true, NSMakeRect( 0, 60, freeSpace, 20 ) );
+    var folderTextfield = NSTextField.alloc().initWithFrame( NSMakeRect( 0, 35, freeSpace, 25 ) );
+    folderTextfield.setStringValue( folder || '' );
+  
+    mainView.addSubview( presetLabel );
+    mainView.addSubview( presetTextfield );
+  
+    mainView.addSubview( folderLabel );
+    mainView.addSubview( folderTextfield );
+  
+    alert.addAccessoryView( mainView );
+  
+    var inputs = [ presetTextfield, folderTextfield ];
+    return [alert, inputs];
+}
 
 export const calculateLayerDimension = (item) => {
     let layer = item;
