@@ -2,11 +2,11 @@
   "identifier" : "cloudinary.plugins",
   "name" : "Cloudinary plugin",
   "description": "Cloudinary plugin for Sketch",
-  "author" : "Boaz the King team",
+  "author" : "The 😸 team",
   "authorEmail" : "maya@cloudinary.com",
   "version": "0.0.1",
   "$schema": "https://raw.githubusercontent.com/BohemianCoding/SketchAPI/develop/docs/sketch-plugin-manifest-schema.json",
-  "icon": "icon@2x.png",
+  "icon": "icon.png",
   "suppliesData" : true,
   "commands": [
     {
