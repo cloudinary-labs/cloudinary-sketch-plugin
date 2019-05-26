@@ -1,0 +1,18 @@
+{
+  "$schema": "https://raw.githubusercontent.com/BohemianCoding/SketchAPI/develop/docs/sketch-plugin-manifest-schema.json",
+  "icon": "icon.png",
+  "suppliesData" : true,
+  "commands": [
+    {
+      "name": "my-command",
+      "identifier": "cloudinary-plugin.my-command-identifier",
+      "script": "./my-command.js"
+    }
+  ],
+  "menu": {
+    "title": "Cloudinary",
+    "items": [
+      "cloudinary-plugin.my-command-identifier"
+    ]
+  }
+}
