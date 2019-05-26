@@ -4,7 +4,7 @@
   "suppliesData" : true,
   "commands": [
     {
-      "name": "my-command",
+      "name": "Settings",
       "identifier": "cloudinary-plugin.my-command-identifier",
       "script": "./my-command.js"
     }

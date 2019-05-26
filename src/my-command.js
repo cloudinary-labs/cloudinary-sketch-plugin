@@ -1,79 +1,44 @@
-import sketch from 'sketch'
-import fs from '@skpm/fs'
+// import sketch from 'sketch'
+import createSettingsWindow from './utils';
 
-const { DataSupplier, UI, Settings } = sketch
+// const { DataSupplier, UI, Settings } = sketch
 
-var alert = COSAlertWindow.new();
+// export function onStartup () {
+//   UI.getInputFromUser(
+//     "Your username",
+//     {
+//       type: UI.INPUT_TYPE.selection,
+//     },
+//     (err, value) => {
+//       if (err) {
+//         // most likely the user canceled the input
+//         return
+//       }
+//     }
+//   )
 
-alert.setIcon(NSImage.alloc().initByReferencingFile(plugin.urlForResourceNamed("rectangle@2x.png").path()));
-alert.setMessageText("Configure your confetti")
-
-// Creating dialog buttons
-alert.addButtonWithTitle("Ok");
-alert.addButtonWithTitle("Cancel");
-
-// Creating the view
-var viewWidth = 300;
-var viewHeight = 140;
-
-var view = NSView.alloc().initWithFrame(NSMakeRect(0, 0, viewWidth, viewHeight));
-alert.addAccessoryView(view);
-
-// Create and configure your inputs here
-// ...
+//   DataSupplier.registerDataSupplier('public.image', 'Add photo by public Id', 'SupplyPhotoById')
+//   DataSupplier.registerDataSupplier('public.image', 'Search Photo…', 'SearchPhoto')
+// }
 
 
-// Show the dialog
-return [alert]
-// const SETTING_KEY = 'unsplash.photo.id'
-// const FOLDER = path.join(os.tmpdir(), 'com.sketchapp.unsplash-plugin')
+export default function(context) {
+  // var doc = context.document
 
-export function onStartup () {
-  UI.getInputFromUser(
-    "Your username",
-    {
-      type: UI.INPUT_TYPE.selection,
-    },
-    (err, value) => {
-      if (err) {
-        // most likely the user canceled the input
-        return
-      }
-    }
-  )
+  // var last_email = NSUserDefaults.standardUserDefaults().objectForKey('email')
+  // var last_password = NSUserDefaults.standardUserDefaults().objectForKey('password')
 
-  DataSupplier.registerDataSupplier('public.image', 'Add photo by public Id', 'SupplyPhotoById')
-  DataSupplier.registerDataSupplier('public.image', 'Search Photo…', 'SearchPhoto')
-}
+  var popup = createSettingsWindow(context, '', '')
 
-export function onShutdown () {
-  DataSupplier.deregisterDataSuppliers()
-  try {
-    if (fs.existsSync(FOLDER)) {
-      fs.rmdirSync(FOLDER)
-    }
-  } catch (err) {
-    console.error(err)
-  }
-}
+  var alert = popup[0];
+  var inputs = popup[1];
+  var response = alert.runModal();
 
-function SupplyPhotoById (context) {
-//context.data.key
-//context.data.items
-}
-
-function SearchPhoto (context) {
-
-}
-
-export default function() {
-  const doc = sketch.getSelectedDocument()
-  const selectedLayers = doc.selectedLayers
-  const selectedCount = selectedLayers.length
-
-  if (selectedCount === 0) {
-    sketch.UI.alert('Hello World', 'No layers are selected.')
-  } else {
-    sketch.UI.message(`${selectedCount} layers selected.`)
+  // save button was pressed
+  if ( response === 1000 ) {
+    var email = inputs[0].stringValue()
+    var password = inputs[1].stringValue()
+    NSUserDefaults.standardUserDefaults().setObject_forKey(email, 'email')
+    NSUserDefaults.standardUserDefaults().setObject_forKey(password, 'password')
   }
 }
