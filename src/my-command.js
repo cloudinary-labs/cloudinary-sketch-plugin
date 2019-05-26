@@ -1,7 +1,8 @@
-// import sketch from 'sketch'
+import sketch from 'sketch'
 import createSettingsWindow from './utils';
+import intializeCloudinary from './cloudinary';
 
-// const { DataSupplier, UI, Settings } = sketch
+const { DataSupplier, UI, Settings } = sketch
 
 // export function onStartup () {
 //   UI.getInputFromUser(
@@ -35,13 +36,18 @@ export default function(context) {
   var inputs = popup[1];
   var response = alert.runModal();
 
+  UI.alert('creden-1', String(response));
   // save button was pressed
-  if ( response === 1000 ) {
+  if ( String(response) === '1000' ) {
+    
     var cloudname = inputs[0].stringValue()
     var apikey = inputs[1].stringValue()
     var secretkey = inputs[2].stringValue()
     NSUserDefaults.standardUserDefaults().setObject_forKey(cloudname, 'cloudname')
     NSUserDefaults.standardUserDefaults().setObject_forKey(apikey, 'apikey')
     NSUserDefaults.standardUserDefaults().setObject_forKey(secretkey, 'secretkey')
+
+    UI.alert('creden', cloudname + '-' + apikey + '-' + secretkey)
+    intializeCloudinary(cloudname, apikey, secretkey);
   }
 }

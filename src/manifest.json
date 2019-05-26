@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/BohemianCoding/SketchAPI/develop/docs/sketch-plugin-manifest-schema.json",
-  "icon": "icon.png",
+  "icon": "icon@2x.png",
   "suppliesData" : true,
   "commands": [
     {
