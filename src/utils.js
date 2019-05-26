@@ -33,16 +33,16 @@ export function createLabel( text, fontSize, bold, frame ) {
   return label;
 }
 
-
 export function createSettingsWindow(context, email, password) {
     var alert = COSAlertWindow.new();
     var width = 400;
     var freeSpace = width - 100;
-  
-    alert.addButtonWithTitle( 'Save' );
+
+    alert.setIcon( NSImage.alloc().initByReferencingFile( context.plugin.urlForResourceNamed( 'icon@2x.png' ).path() ) );
+    alert.addButtonWithTitle( 'Login' );
     alert.addButtonWithTitle( 'Cancel' );
-    alert.setMessageText( 'Sketch Conceptboard' );
-    alert.setInformativeText( 'Set your Conceptboard Login to sync Sketch with your Conceptboard.' );
+    alert.setMessageText( 'Cloudinary for Sketch' );
+    alert.setInformativeText( 'Set your Cloudinary Login to sync Sketch with your Cloudinary account.' );
   
     var mainView = NSView.alloc().initWithFrame( NSMakeRect( 0, 0, width, 150 ) );
     var emailLabel = createLabel( 'Email Address', 12, true, NSMakeRect( 0, 120, freeSpace, 20 ) );
