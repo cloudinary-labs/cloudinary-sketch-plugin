@@ -27,7 +27,7 @@ export function upload() {
                     const buffer = sketch.export(ab, options);
 
                     var data = new FormData();
-                    data.append("upload_preset", "preset",); //user generated
+                    data.append("upload_preset", "normal",); //user generated
                     data.append("file", "data:image/png;base64," + buffer.toString('base64'));
                     data.append("folder", terms); //folder input from user
                     data.append("public_id", ab.name); //artboard name - auto generate
@@ -43,8 +43,8 @@ export function upload() {
                     .then(function(response){return response.json();})
                     .then(function(data) {
                         console.log(data);
-
-                        UI.message('🚀 Uploaded successfully!!!');
+                        if (data.error) UI.message('Something was wrong');
+                        else UI.message('🚀 Uploaded successfully!!!');
                     });
                 }
                 else {
