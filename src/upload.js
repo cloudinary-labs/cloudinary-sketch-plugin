@@ -1,9 +1,15 @@
 import sketch from 'sketch'
+import { getStoredCredentials } from './utils';
 
 const { UI, Settings } = sketch
 
 export function upload() {
-    var cloud_name = NSUserDefaults.standardUserDefaults().objectForKey('cloudname');
+    const { cloud_name } = getStoredCredentials();
+
+    if (!cloud_name) {
+        UI.alert('⚠️ You need to configure Cloudinary account');
+        return -1;
+    }
 
     var data = {
         "upload_preset": "preset",
@@ -12,7 +18,6 @@ export function upload() {
         "public_id": "artboard_name" //artboard name - auto generate
     };
 
-    if (!cloud_name) return -1;
     fetch(`https://api.cloudinary.com/v1_1/${cloud_name}/upload`, {
     	method: 'POST',
     	headers: {

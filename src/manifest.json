@@ -16,8 +16,7 @@
           "Startup" : "onStartup",
           "Shutdown": "onShutdown",
           "SupplyPhotoById" : "onGetPhotoById",
-          "SearchPhoto" : "onSearchPhoto",
-          "UploadPhoto" : "onUploadPhoto"
+          "SearchPhoto" : "onSearchPhoto"
         }
       }
     },
@@ -47,7 +46,8 @@
   "menu": {
     "title": "Cloudinary",
     "items": [
-      "cloudinary.plugins.configure"
+      "cloudinary.plugins.configure",
+      "cloudinary.plugins.upload"
     ]
   }
 }

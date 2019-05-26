@@ -3,13 +3,15 @@ import sketch from 'sketch'
 import path from 'path'
 import util from 'util'
 import fs from '@skpm/fs';
-import {getOrientations} from './utils';
+import { getOrientations } from './utils';
 
-const API_ENDPOINT = 'https://res.cloudinary.com/';
-const FOLDER = path.join(os.tmpdir(), 'com.sketchapp.cloudinary-plugin')
+export const API_ENDPOINT = 'https://res.cloudinary.com/';
+export const FOLDER = path.join(os.tmpdir(), 'com.sketchapp.cloudinary-plugin')
+export const SETTING_KEY = 'cloudinary.photo.id';
 
-const { DataSupplier, UI, Settings } = sketch
-const flatten = (arrays) => {
+const { DataSupplier, UI, Settings } = sketch;
+
+export const flatten = (arrays) => {
     return arrays.reduce((prev, array) => prev.concat(array), [])
 }
 
@@ -23,47 +25,31 @@ export const getPhotoById = () => {
     if (sketch.version.sketch < 53) {
         const searchTerm = UI.getStringFromUser('Get photo with public id...', previousTerm).trim()
         if (searchTerm !== 'null') {
-            selectedLayers.forEach(layer => {
-                Settings.setLayerSettingForKey(layer, 'cloudinary.search.publicId', searchTerm)
-            })
+            setLayerAndFetch(selectedLayers, context, searchTerm);
         }
     } else {
         UI.getInputFromUser('Get photo from Cloudinary with public id...',
             { initialValue: previousTerm },
             (err, searchTerm) => {
-                if (err) { return } // user hit cancel
-                if ((searchTerm = searchTerm.trim()) !== 'null') {
-                selectedLayers.forEach(layer => {
-                    Settings.setLayerSettingForKey(layer, 'cloudinary.search.publicId', searchTerm)
-                })
-                calculateImageUrl(context, searchTerm);
-                // setImageForContext(context, null, searchTerm);
+                if (err) return; // user hit cancel
+                const publicId = searchTerm.trim();
+
+                if (publicId !== 'null') {
+                    setLayerAndFetch(selectedLayers, context, publicId);
                 }
             }
         )
     }
 }
 
+export const setLayerAndFetch = (selectedLayers, context, searchTerm) => {
+    selectedLayers.forEach(layer => {
+        Settings.setLayerSettingForKey(layer, 'cloudinary.search.publicId', searchTerm)
+    })
 
-const calculateImageUrl = (context, publicId) => {
+    UI.message('🕑 Downloading...')
+    const mappedData = calculateImageUrl(context, searchTerm);
     const dataKey = context.data.key;
-    const cloudname = NSUserDefaults.standardUserDefaults().objectForKey('cloudname');
-    const errorMsg = !cloudname ? '⚠️ You need to configure Cloudinary account' : (!publicId ? '😰 No public id provided' : '');
-    
-    if (errorMsg) { UI.alert('Warning', errorMsg); }
-
-    const items = util.toArray(context.data.items).map(sketch.fromNative);
-
-    const orientations = getOrientations(items);
-
-    const mappedData = items.map((item, index) => {
-        const mappedOrientation = {...flatten(Object.values(orientations))[index]};
-        console.log(`${API_ENDPOINT}${cloudname}/image/upload/w_${mappedOrientation.frame.width*4},h_${mappedOrientation.frame.height*4},q_auto,c_fill,g_auto/${publicId}.png`);
-        return ({
-            item: item,
-            url: `${API_ENDPOINT}${cloudname}/image/upload/w_${mappedOrientation.frame.width*4},h_${mappedOrientation.frame.height*4},q_auto,c_fill,g_auto/${publicId}.png`,
-        });
-    });
 
     mappedData.forEach((data, index) => {
         return fetch(data.url)
@@ -72,7 +58,7 @@ const calculateImageUrl = (context, publicId) => {
             .then(saveTempFileFromImageData)
             .then(imagePath => {
                 if (!imagePath) {
-                    // TODO: something wrong happened, show something to the user
+                    UI.message(`❌ Image path is not correct.`)
                     return
                 }
                 DataSupplier.supplyDataAtIndex(dataKey, imagePath, index)
@@ -82,16 +68,37 @@ const calculateImageUrl = (context, publicId) => {
                     Settings.setLayerSettingForKey(data.item, SETTING_KEY, data.item.id)
                 }
             
-                UI.message('📷 on Cloudinary')
+                UI.message(`✅ ${mappedData.length} image(s) added!`)
             })
             .catch((err) => {
-            console.error(err)
+                console.error(err);
+                UI.message(`😱 No image added.`)
                 return context.plugin.urlForResourceNamed('placeholder.png').path()
             })
     })
 }
 
-function saveTempFileFromImageData (imageData) {
+
+export const calculateImageUrl = (context, publicId) => {
+    const cloudname = NSUserDefaults.standardUserDefaults().objectForKey('cloudname');
+    const errorMsg = !cloudname ? '⚠️ You need to configure Cloudinary account' : (!publicId ? '😰 No public id provided' : '');
+    
+    if (errorMsg) { UI.alert('Warning', errorMsg); }
+
+    const items = util.toArray(context.data.items).map(sketch.fromNative);
+
+    const orientations = getOrientations(items);
+
+    return items.map((item, index) => {
+        const mappedOrientation = {...flatten(Object.values(orientations))[index]};
+        return ({
+            item: item,
+            url: `${API_ENDPOINT}${cloudname}/image/upload/w_${mappedOrientation.frame.width*4},h_${mappedOrientation.frame.height*4},q_auto,c_fill,g_auto/${publicId}.png`,
+        });
+    });
+}
+
+export function saveTempFileFromImageData (imageData) {
     const guid = NSProcessInfo.processInfo().globallyUniqueString()
     const imagePath = path.join(FOLDER, `${guid}.jpg`)
     try {

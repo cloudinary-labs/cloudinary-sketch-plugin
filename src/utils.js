@@ -129,4 +129,10 @@ export const getOrientations = (items) => {
     });
 }
 
+export const getStoredCredentials = () => ({
+    cloud_name: NSUserDefaults.standardUserDefaults().objectForKey('cloudname'),
+    api_key: NSUserDefaults.standardUserDefaults().objectForKey('apikey'),
+    api_secret: NSUserDefaults.standardUserDefaults().objectForKey('secretkey')
+});
+
 export default createSettingsWindow;
