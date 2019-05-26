@@ -68,10 +68,9 @@ const getLayersAndMap = (selectedLayers, context, searchTerm) => {
         const mapped =  items.map((item, index) => {
             const mappedOrientation = {...flatten(Object.values(orientations))[index]};
             const resource = resources[index] ? resources[index] : resources[resources.length - 1];
-console.log(`${API_ENDPOINT}${cloud_name}/image/upload/w_${mappedOrientation.frame.width*4},h_${mappedOrientation.frame.height*4},q_auto,c_fill,g_auto/${resource.public_id}.png`);
             return ({
                 item: item,
-                url: `${API_ENDPOINT}${cloud_name}/image/upload/w_${mappedOrientation.frame.width*4},h_${mappedOrientation.frame.height*4},q_auto,c_fill,g_auto/${resource.public_id}.png`,
+                url: `${API_ENDPOINT}${cloud_name}/image/upload/w_${mappedOrientation.frame.width},h_${mappedOrientation.frame.height},q_auto,c_fill,g_auto/${resource.public_id}.png`,
             });
         });
 

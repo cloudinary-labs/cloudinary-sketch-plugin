@@ -61,6 +61,7 @@ export const setLayerAndFetch = (selectedLayers, context, searchTerm) => {
                     UI.message(`❌ Image path is not correct.`)
                     return
                 }
+                
                 DataSupplier.supplyDataAtIndex(dataKey, imagePath, index)
             
                 // store where the image comes from, but only if this is a regular layer
@@ -93,7 +94,7 @@ export const calculateImageUrl = (context, publicId) => {
         const mappedOrientation = {...flatten(Object.values(orientations))[index]};
         return ({
             item: item,
-            url: `${API_ENDPOINT}${cloudname}/image/upload/w_${mappedOrientation.frame.width*4},h_${mappedOrientation.frame.height*4},q_auto,c_fill,g_auto/${publicId}.png`,
+            url: `${API_ENDPOINT}${cloudname}/image/upload/w_${mappedOrientation.frame.width},h_${mappedOrientation.frame.height},q_auto,c_fill,g_auto/${publicId}.png`,
         });
     });
 }
@@ -104,6 +105,7 @@ export function saveTempFileFromImageData (imageData) {
     try {
       fs.mkdirSync(FOLDER)
     } catch (err) {
+        UI.message('Error writing to file');
       // probably because the folder already exists
       // TODO: check that it is really because it already exists
     }
