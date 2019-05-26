@@ -31,7 +31,7 @@
       "script": "./search.js",
       "handler": "search"
     }, {
-      "name": "Upload a layer",
+      "name": "Upload artboard",
       "identifier": "cloudinary.plugins.upload",
       "script": "./upload.js",
       "handler": "upload"

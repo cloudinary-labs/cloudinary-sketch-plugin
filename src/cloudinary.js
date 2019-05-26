@@ -113,6 +113,7 @@ export function saveTempFileFromImageData (imageData) {
       fs.writeFileSync(imagePath, imageData, 'NSData')
       return imagePath
     } catch (err) {
+        UI.message(`Error writing to file ${imagePath}`);
       console.error(err)
       return undefined
     }
