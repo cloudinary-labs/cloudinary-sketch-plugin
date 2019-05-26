@@ -33,7 +33,7 @@ export function createLabel( text, fontSize, bold, frame ) {
   return label;
 }
 
-export function createSettingsWindow(context, email, password) {
+export function createSettingsWindow(context, cloudName, apiKey, secretKey) {
     var alert = COSAlertWindow.new();
     var width = 400;
     var freeSpace = width - 100;
@@ -44,24 +44,32 @@ export function createSettingsWindow(context, email, password) {
     alert.setMessageText( 'Cloudinary for Sketch' );
     alert.setInformativeText( 'Set your Cloudinary Login to sync Sketch with your Cloudinary account.' );
   
-    var mainView = NSView.alloc().initWithFrame( NSMakeRect( 0, 0, width, 150 ) );
-    var emailLabel = createLabel( 'Email Address', 12, true, NSMakeRect( 0, 120, freeSpace, 20 ) );
-    var emailTextfield = NSTextField.alloc().initWithFrame( NSMakeRect( 0, 95, freeSpace, 25 ) );
-    emailTextfield.setStringValue( email || '' );
+    var mainView = NSView.alloc().initWithFrame( NSMakeRect( 0, 0, width, 200 ) );
+
+    var cloudNameLabel = createLabel( 'Cloudname', 12, true, NSMakeRect( 0, 180, freeSpace, 20 ) );
+    var cloudNameTextfield = NSTextField.alloc().initWithFrame( NSMakeRect( 0, 155, freeSpace, 25 ) );
+    cloudNameTextfield.setStringValue( cloudName || '' );
   
-    var passwordLabel = createLabel( 'Password', 12, true, NSMakeRect( 0, 60, freeSpace, 20 ) );
-    var passwordTextfield = NSSecureTextField.alloc().initWithFrame( NSMakeRect( 0, 35, freeSpace, 25 ) );
-    passwordTextfield.setStringValue( password || '' );
+    var apiKeyLabel = createLabel( 'API Key', 12, true, NSMakeRect( 0, 120, freeSpace, 20 ) );
+    var apiKeyTextfield = NSSecureTextField.alloc().initWithFrame( NSMakeRect( 0, 95, freeSpace, 25 ) );
+    apiKeyTextfield.setStringValue( apiKey || '' );
+
+    var secretKeyLabel = createLabel( 'API Secret Key', 12, true, NSMakeRect( 0, 60, freeSpace, 20 ) );
+    var secretKeyTextfield = NSSecureTextField.alloc().initWithFrame( NSMakeRect( 0, 35, freeSpace, 25 ) );
+    secretKeyTextfield.setStringValue( secretKey || '' );
   
-    mainView.addSubview( emailLabel );
-    mainView.addSubview( emailTextfield );
+    mainView.addSubview( cloudNameLabel );
+    mainView.addSubview( cloudNameTextfield );
   
-    mainView.addSubview( passwordLabel );
-    mainView.addSubview( passwordTextfield );
+    mainView.addSubview( apiKeyLabel );
+    mainView.addSubview( apiKeyTextfield );
+
+    mainView.addSubview( secretKeyLabel );
+    mainView.addSubview( secretKeyTextfield );
   
     alert.addAccessoryView( mainView );
   
-    var inputs = [ emailTextfield, passwordTextfield ];
+    var inputs = [ cloudNameTextfield, apiKeyTextfield, secretKeyTextfield ];
     return [alert, inputs]
 };
 
