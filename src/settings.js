@@ -1,29 +1,6 @@
-import sketch from 'sketch'
 import createSettingsWindow from './utils';
-import intializeCloudinary from './cloudinary';
 
-const { DataSupplier, UI, Settings } = sketch
-
-// export function onStartup () {
-//   UI.getInputFromUser(
-//     "Your username",
-//     {
-//       type: UI.INPUT_TYPE.selection,
-//     },
-//     (err, value) => {
-//       if (err) {
-//         // most likely the user canceled the input
-//         return
-//       }
-//     }
-//   )
-
-//   DataSupplier.registerDataSupplier('public.image', 'Add photo by public Id', 'SupplyPhotoById')
-//   DataSupplier.registerDataSupplier('public.image', 'Search Photo…', 'SearchPhoto')
-// }
-
-
-export default function(context) {
+export function settings(context) {
   // var doc = context.document
 
   var last_cloudname = NSUserDefaults.standardUserDefaults().objectForKey('cloudname')
@@ -36,9 +13,8 @@ export default function(context) {
   var inputs = popup[1];
   var response = alert.runModal();
 
-  UI.alert('creden-1', String(response));
   // save button was pressed
-  if ( String(response) === '1000' ) {
+  if ( response === 1000 ) {
     
     var cloudname = inputs[0].stringValue()
     var apikey = inputs[1].stringValue()
@@ -46,8 +22,7 @@ export default function(context) {
     NSUserDefaults.standardUserDefaults().setObject_forKey(cloudname, 'cloudname')
     NSUserDefaults.standardUserDefaults().setObject_forKey(apikey, 'apikey')
     NSUserDefaults.standardUserDefaults().setObject_forKey(secretkey, 'secretkey')
-
-    UI.alert('creden', cloudname + '-' + apikey + '-' + secretkey)
-    intializeCloudinary(cloudname, apikey, secretkey);
   }
 }
+
+export default settings;
