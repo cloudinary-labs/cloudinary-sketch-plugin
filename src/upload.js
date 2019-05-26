@@ -27,7 +27,7 @@ export function upload() {
                 const options = { formats: 'png', output: false};
                 const buffer = sketch.export(ab, options);
                 var data = new FormData();
-                data.append("upload_preset", "preset",);
+                data.append("upload_preset", "preset",); //user generated
                 data.append("file", "data:image/png;base64," + buffer.toString('base64'));
                 data.append("folder", terms); //folder input from user
                 data.append("public_id", ab.name); //artboard name - auto generate
