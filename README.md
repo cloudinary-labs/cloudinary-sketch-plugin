@@ -1,5 +1,35 @@
 # cloudinary-plugin
 
+This Sketch plugin allows designers to fetch images from Cloudinary DAM. It also allows Uploading Artboards (or layers) *directly* to Cloudinary using an Upload preset.
+
+The plugin was developed as part of the Cloudinary Hackathon (May 2019).
+
+> This project is in an early stage and lacks documentation. If you're interested in contributing or using it at your company, feel free to open GitHub issues.
+
+Roadmap
+------
+
+# 🐛Bugs (need to open as issues)
+- [ ] more than 5 downloads fail
+- [ ] need to present a message for  “no results” from search/public-id (404)
+
+### *To-do’s*
+- [ ] add an option to config Upload-preset for upload
+- [ ] add .sketch-plugin file in "latest release" path of this document.
+- [ ] add keyboard-shortcut for uploading artboard
+- [ ] disable “upload” option or display an error message if nothing is selected…
+- [ ] adv.options add option to choose lossy/low-res downloads (faster)
+- [ ] properly write a description, and .MD file for GitHub
+- [ ] add screenshots and gifs and “How-to”s 
+- [ ] change “cloduinary plugin” in data to “Cloudinary” or DAM 
+
+### 🙏 *wishlist*
+* support SVG upload and download (as layers).
+* support inserting video’s as images in sketch
+* also use image metadata as part of "DATA" importing ()
+------ 
+
+
 ## Installation
 
 - [Download](../../releases/latest/download/cloudinary-plugin.sketchplugin.zip) the latest release of the plugin
@@ -90,3 +120,10 @@ You will need to specify a `repository` in the `package.json`:
 +  }
 ...
 ```
+------
+
+### Contributors
+
+- Design & development [@mayashavin](https://github.com/mayashavin)
+- development [@taragano](https://github.com/taragano)
+- PD [@aniboaz](https://github.com/aniboaz)
