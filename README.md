@@ -1,6 +1,8 @@
-# Cloudinary plugin for Sketch
 
+<p align="center">
 ![](https://res.cloudinary.com/mayashavin/image/upload/w_600/Screen_Shot_2019-05-27_at_11.58.32.png)
+  </p>
+<h1 align="center"> Cloudinary plugin for Sketch<h1>
 This Sketch plugin allows designers to fetch images from Cloudinary DAM. It also allows Uploading Artboards (or layers) *directly* to Cloudinary using an Upload preset.
 
 The plugin was developed as part of the Cloudinary Hackathon (May 2019).
