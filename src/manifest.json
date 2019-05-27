@@ -2,7 +2,7 @@
   "identifier" : "cloudinary.plugins",
   "name" : "Cloudinary plugin",
   "description": "Cloudinary plugin for Sketch",
-  "author" : "The 😸 team",
+  "author" : "Cloudinary",
   "authorEmail" : "maya@cloudinary.com",
   "version": "0.0.1",
   "$schema": "https://raw.githubusercontent.com/BohemianCoding/SketchAPI/develop/docs/sketch-plugin-manifest-schema.json",
