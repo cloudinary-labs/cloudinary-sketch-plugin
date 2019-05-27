@@ -20,7 +20,6 @@ Roadmap
 - [ ] need to present a message for  “no results” from search/public-id (404)
 
 ### *To-do’s*
-- [ ] add an option to config Upload-preset for upload
 - [ ] add .sketch-plugin file in "latest release" path of this document.
 - [ ] add keyboard-shortcut for uploading artboard
 - [ ] disable “upload” option or display an error message if nothing is selected…
