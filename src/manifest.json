@@ -31,9 +31,11 @@
       "script": "./search.js",
       "handler": "search"
     }, {
-      "name": "Upload artboard",
+      "name": "Upload selection",
       "identifier": "cloudinary.plugins.upload",
       "script": "./upload.js",
+      "shortcut": "cmd shift u",
+      "icon": "icon.png",
       "handler": "upload"
     },
     {
