@@ -10,29 +10,9 @@ The images fetched will be optimized in size with g_auto and q_auto.
 
 The plugin was developed as part of the Cloudinary Hackathon (May 2019).
 
-> This project is in an early stage and lacks documentation. If you're interested in contributing or using it at your company, feel free to open GitHub issues.
+> ⚠️ This project is in an early stage and lacks documentation. If you're interested in contributing or using it at your company, feel free to open GitHub issues.
 
-Roadmap
 ------
-
-### 🐛Bugs (reminder - need to open as issues)
-- [ ] more than 5 downloads fail
-- [ ] need to present a message for  “no results” from search/public-id (404)
-
-### *To-do’s*
-- [ ] add .sketch-plugin file in "latest release" path of this document.
-- [ ] add keyboard-shortcut for uploading artboard
-- [ ] disable “upload” option or display an error message if nothing is selected…
-- [ ] adv.options add option to choose lossy/low-res downloads (faster)
-- [ ] properly write a description, and .MD file for GitHub
-- [ ] add screenshots and gifs and “How-to”s 
-- [ ] change “cloduinary plugin” in data to “Cloudinary” or DAM 
-
-### 🙏 *wishlist*
-* support SVG upload and download (as layers).
-* support inserting video’s as images in sketch
-* also use image metadata as part of "DATA" importing ()
------- 
 
 
 ## Installation
