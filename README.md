@@ -20,9 +20,9 @@ The ability to insert assets from Cloudinary’s DAM to Sketch
 
 ### Using Public ID 
 
-![insert using public id](https://res.cloudinary.com/boazz/video/upload/c_crop,w_1200,h_800/w_800,q_auto,e_accelerate,e_loop/sketch-demo/sketch_flow_insert.gif)
+![Insert using public id](https://res.cloudinary.com/boazz/video/upload/c_crop,w_1200,h_800/w_800,q_auto,e_accelerate,e_loop/sketch-demo/sketch_flow_insert.gif)
 
-### Usng Search
+### Using Search
 ![Using Search](https://res.cloudinary.com/boazz/video/upload/c_crop,w_800,h_800,g_west,q_auto,e_accelerate:200,e_loop/sketch-demo/sketch_flow_insert-search_02.gif)
 
 These can be done on multiple assets in parallel
@@ -44,6 +44,9 @@ _This plugin was created using `skpm`. For a detailed explanation on how things 
 
 ### Contributors
 
-- Design & development [@mayashavin](https://github.com/mayashavin)
-- development [@taragano](https://github.com/taragano)
-- PD [@aniboaz](https://github.com/aniboaz)
+- Design & Development [@mayashavin](https://github.com/mayashavin)
+- Development [@taragano](https://github.com/taragano)
+- Product Design [@aniboaz](https://github.com/aniboaz)
+
+## License
+[MIT](LICENSE.md)

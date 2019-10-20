@@ -1,0 +1,1 @@
+This is documentation for the plugin

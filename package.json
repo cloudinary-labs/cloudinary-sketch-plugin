@@ -1,6 +1,6 @@
 {
-  "name": "cloudinary-plugin",
-  "description": "",
+  "name": "cloudinary-sketch-plugin",
+  "description": "Cloudinary plugin for Sketch projects",
   "version": "0.1.0",
   "engines": {
     "sketch": ">=49.0"
@@ -18,10 +18,13 @@
     "build": "skpm-build",
     "watch": "skpm-build --watch",
     "start": "skpm-build --watch --run",
-    "postinstall": "npm run build && skpm-link"
+    "postinstall": "npm run build && skpm-link",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
   },
   "devDependencies": {
-    "@skpm/builder": "^0.7.0"
+    "@skpm/builder": "^0.7.0",
+    "vuepress": "^1.2.0"
   },
   "author": "Maya Shavin <maya@cloudinary.com>",
   "dependencies": {
