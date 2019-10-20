@@ -1,6 +1,6 @@
 # build artifacts
 cloudinary-plugin.sketchplugin
-
+docs/.vuepress/dist
 # npm
 node_modules
 .npm
