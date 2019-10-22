@@ -111,9 +111,7 @@ export function saveTempFileFromImageData (imageData) {
     }
 
     try {
-        console.log('writing file');
-      fs.writeFileSync(imagePath, Buffer.from(new Uint8Array(imageData), 'NSData'))
-      //fs.writeFileSync(imagePath, imageData, 'NSData')
+      fs.writeFileSync(imagePath, imageData, 'NSData')
       return imagePath
     } catch (err) {
         UI.message(`Error writing to file ${imagePath}`);
