@@ -47,7 +47,7 @@ const getLayersAndMap = (selectedLayers, context, searchTerm) => {
         sort_by: [
             { public_id: "desc"}   
         ],
-        expression: `tags:${searchTerm}`
+        expression: `tags:${searchTerm} AND resource_type:image`
     };
 
     fetch(`https://${api_key}:${api_secret}@api.cloudinary.com/v1_1/${cloud_name}/resources/search`, {
@@ -59,9 +59,12 @@ const getLayersAndMap = (selectedLayers, context, searchTerm) => {
     })
     .then(function(response){return response.json();})
     .then(function(data) {
-        console.log(data);
-
         const resources = data.resources;
+
+        if (resources.length === 0) {
+            UI.message('🔍 There is no result found.');
+            return;
+        }
     
         const orientations = getOrientations(items);
     
@@ -70,7 +73,7 @@ const getLayersAndMap = (selectedLayers, context, searchTerm) => {
             const resource = resources[index] ? resources[index] : resources[resources.length - 1];
             return ({
                 item: item,
-                url: `${API_ENDPOINT}${cloud_name}/image/upload/w_${mappedOrientation.frame.width},h_${mappedOrientation.frame.height},q_auto,c_fill,g_auto/${resource.public_id}.png`,
+                url: encodeURI(`${API_ENDPOINT}${cloud_name}/image/upload/w_${mappedOrientation.frame.width},h_${mappedOrientation.frame.height},q_auto,c_fill,g_auto/${resource.public_id}.png`),
             });
         });
 
@@ -79,7 +82,7 @@ const getLayersAndMap = (selectedLayers, context, searchTerm) => {
         mapped.forEach((data, index) => {
             return fetch(data.url)
                 .then(res => res.blob())
-                // TODO: use imageData directly, once #19391 is implemented
+                // TODO: use imageData directly
                 .then(saveTempFileFromImageData)
                 .then(imagePath => {
                     if (!imagePath) {

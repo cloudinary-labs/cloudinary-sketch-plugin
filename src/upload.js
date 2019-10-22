@@ -1,19 +1,23 @@
 import sketch from 'sketch'
 import { getStoredCredentials, createUploadScreen } from './utils';
 
-const { UI, Settings } = sketch
+const { UI } = sketch
 
 export function upload() {
     const { cloud_name } = getStoredCredentials();
     if (!cloud_name) {
-        UI.alert('⚠️ You need to configure Cloudinary account');
+        UI.message('⚠️ You need to configure Cloudinary account');
+        return -1;
+    }
+
+    var selectedLayers = sketch.getSelectedDocument().selectedLayers;
+
+    if (selectedLayers.isEmpty || !selectedLayers.length) {
+        UI.message('⚠️ Please select/create at least one artboard.');
         return -1;
     }
 
     var artboards = sketch.getSelectedDocument().selectedLayers.layers;
-    let previousFolder = artboards.map(layer => Settings.layerSettingForKey(layer, 'cloudinary.upload.folder'))
-    let firstPreviousFolder = previousFolder.find(term => term !== undefined)
-    let pFolder = firstPreviousFolder || '';
 
     var last_preset = NSUserDefaults.standardUserDefaults().objectForKey('preset')
     var last_folder = NSUserDefaults.standardUserDefaults().objectForKey('folder')

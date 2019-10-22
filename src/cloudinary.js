@@ -109,6 +109,7 @@ export function saveTempFileFromImageData (imageData) {
       // probably because the folder already exists
       // TODO: check that it is really because it already exists
     }
+
     try {
       fs.writeFileSync(imagePath, imageData, 'NSData')
       return imagePath
