@@ -1,7 +1,7 @@
 {
   "name": "cloudinary-sketch-plugin",
   "description": "Cloudinary plugin for Sketch projects",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "license": "MIT",
   "engines": {
     "sketch": ">=49.0"
@@ -15,7 +15,7 @@
     ],
     "sketch-assets-file": "sketch-assets/icons.sketch"
   },
-  "repository" : {
+  "repository": {
     "type": "git",
     "url": "git+https://github.com/cloudinary-devs/cloudinary-sketch-plugin"
   },
