@@ -15,6 +15,10 @@
     ],
     "sketch-assets-file": "sketch-assets/icons.sketch"
   },
+  "repository" : {
+    "type": "git",
+    "url": "git+https://github.com/cloudinary-devs/cloudinary-sketch-plugin"
+  },
   "scripts": {
     "build": "skpm-build",
     "watch": "skpm-build --watch",
