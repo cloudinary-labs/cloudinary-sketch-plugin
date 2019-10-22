@@ -59,9 +59,12 @@ const getLayersAndMap = (selectedLayers, context, searchTerm) => {
     })
     .then(function(response){return response.json();})
     .then(function(data) {
-        console.log(data);
-
         const resources = data.resources;
+
+        if (resources.length === 0) {
+            UI.message('🔍 There is no result found.');
+            return;
+        }
     
         const orientations = getOrientations(items);
     
@@ -77,7 +80,6 @@ const getLayersAndMap = (selectedLayers, context, searchTerm) => {
         UI.message('🎑 Adding images...');
 
         mapped.forEach((data, index) => {
-            console.log(data.url);
             return fetch(data.url)
                 .then(res => res.blob())
                 // TODO: use imageData directly
