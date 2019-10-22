@@ -22,7 +22,7 @@ The ability to insert assets from Cloudinary’s DAM to Sketch
 
 ### Using Public ID 
 
-![Insert using public id](https://res.cloudinary.com/boazz/video/upload/c_crop,w_1200,h_800/w_800,q_auto,e_accelerate,e_loop/sketch-demo/sketch_flow_insert.gif)
+![Insert using public id](https://res.cloudinary.com/mayashavin/image/upload/v1571778047/sketch_flow_insert.gif)
 
 ### Using Search
 ![Using Search](https://res.cloudinary.com/boazz/video/upload/c_crop,w_800,h_800,g_west,q_auto,e_accelerate:200,e_loop/sketch-demo/sketch_flow_insert-search_02.gif)
