@@ -7,9 +7,9 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/9466625f-03ea-41d4-9500-5b35c64b3274/deploy-status)](https://app.netlify.com/sites/cloudinary-sketch-plugin/deploys)
 
-This Sketch plugin allows designers to fetch images from Cloudinary DAM. It also allows Uploading Artboards (or layers) *directly* to Cloudinary using an Upload preset.
+This Sketch plugin allows designers to fetch images from [Cloudinary](https://cloudinary.com) DAM. It also allows Uploading Artboards (or layers) *directly* to Cloudinary using an Upload preset.
 
-The images fetched will be optimized in size with g_auto and q_auto.
+The images fetched will be optimized in size with [g_auto](https://cloudinary.com/documentation/image_transformations#automatic_cropping) and [q_auto](https://cloudinary.com/documentation/image_transformations#automatic_quality_and_encoding_settings).
 
 The plugin was developed as part of the Cloudinary Hackathon (May 2019).
 
