@@ -23,18 +23,18 @@ Of the functions we would offer:
 ### Using Public ID 
 
 <p align="center">
-<img src="https://res.cloudinary.com/mayashavin/image/upload/v1571778047/sketch_flow_insert.gif" alt="Insert using public id" />
+<img src="https://res.cloudinary.com/boazz/video/upload/c_crop,w_900,h_600,g_north_west,e_accelerate:100/e_accelerate:100/w_600,q_80,e_accelerate:100,e_loop/sketch-demo/sketch_flow_insert.gif" alt="Insert using public id" />
 </p>
 
 ### Using Search
-![Using Search](https://res.cloudinary.com/boazz/video/upload/c_crop,w_800,h_800,g_west,q_auto,e_accelerate:200,e_loop/sketch-demo/sketch_flow_insert-search_02.gif)
+![Using Search](https://res.cloudinary.com/boazz/video/upload/c_crop,w_800,h_800,g_west,q_auto,e_accelerate:200,e_loop/w_600/sketch-demo/sketch_flow_insert-search_02.gif)
 
 These can be done on multiple assets in parallel
 
 ## Upload artboard from Sketch to DAM
 
 <p align="center">
-<img src="https://res.cloudinary.com/boazz/video/upload/w_800,q_auto,e_accelerate:400/e_loop,f_gif/sketch-demo/sketch_flow_upload.gif" alt="Upload artboard to Cloudinary" />
+<img src="https://res.cloudinary.com/boazz/video/upload/w_900,h_600,c_crop,g_north_west,q_70,e_accelerate:100/e_accelerate:400/w_600,e_loop,f_gif/sketch-demo/sketch_flow_upload.jpg" />
 </p>
 
 This can be done while using our upload preset features such as auto tagging, auto folder assignment and more.
